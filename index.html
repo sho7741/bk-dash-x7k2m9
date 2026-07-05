@@ -61,6 +61,25 @@ details summary{cursor:pointer;color:var(--ink-2);font-size:13px;padding:6px 0}
 .tooltip{position:fixed;pointer-events:none;background:var(--surface-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none;z-index:10}
 .tooltip .tv{font-weight:700;font-size:14px}
 .tooltip .tl{color:var(--muted);font-size:11px}
+/* テーブルはスマホで横スクロール（潰さない） */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tscroll table{min-width:560px}
+/* ===== スマホ最適化 ===== */
+@media(max-width:640px){
+  .wrap{padding:16px 12px 70px}
+  h1{font-size:19px}
+  h2{font-size:15px;margin:26px 0 10px}
+  .card{padding:13px;border-radius:12px}
+  .hero .value{font-size:40px}
+  .hero .delta{font-size:12px}
+  /* 投稿カード: 横スクロールの1行カルーセル */
+  .hot-grid{display:flex;overflow-x:auto;gap:9px;padding-bottom:6px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+  .hot-grid .post-card{flex:0 0 31%;min-width:118px;scroll-snap-align:start}
+  /* 週次トレンド: 1列 */
+  .grid[style*="repeat(2,1fr)"]{grid-template-columns:1fr !important}
+  /* 成長速度バーの日付ラベルが重なるのを軽減 */
+  svg text{font-size:9px}
+}
 </style></head><body class="viz-root"><div class="wrap">
 <h1>牧歌ダッシュボード</h1>
 <div class="sub">@bokaboka_gram ／ 最終更新 2026-07-05 15:37 ／ 毎朝8時自動更新 ／ 数字はInstagram単体（FB推薦面が別途 約1.3〜1.6倍）</div>
@@ -188,18 +207,18 @@ details summary{cursor:pointer;color:var(--ink-2);font-size:13px;padding:6px 0}
 </div>
 <h2>📊 詳細分析</h2>
 <div class="card"><div class="tile"><div class="label">期間比較（スナップショット差分＝その期間に実際に増えた数）</div></div>
-<table class="tabnum"><tr><th>期間</th><th>日数</th><th>獲得views</th><th>views/日</th><th>獲得likes</th><th>獲得comments</th><th>フォロワー増</th><th>新規投稿</th></tr>
+<div class="tscroll"><table class="tabnum"><tr><th>期間</th><th>日数</th><th>獲得views</th><th>views/日</th><th>獲得likes</th><th>獲得comments</th><th>フォロワー増</th><th>新規投稿</th></tr>
 <tr><td>06-29→07-05</td><td>6</td><td class="dv2">+8,976,994</td><td>1,496,166</td><td>+65,037</td><td>+945</td><td>+4,392</td><td>4</td></tr>
-</table></div>
-<div class="card" style="margin-top:14px"><div class="tile"><div class="label">フォロワーの国別構成推移（上位8カ国・構成比%）</div></div><table class="tabnum"><tr><th>国</th><th>06-29</th><th>07-05</th><th>変化</th></tr><tr><td><b>IN</b> インド</td><td>20.1%</td><td>19.9%</td><td style="color:#d03b3b">↓ -0.1pt</td></tr><tr><td><b>US</b> アメリカ</td><td>10.3%</td><td>10.3%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>BR</b> ブラジル</td><td>10.1%</td><td>10.2%</td><td style="color:var(--up);font-weight:700">↑ +0.1pt</td></tr><tr><td><b>ID</b> インドネシア</td><td>8.3%</td><td>8.3%</td><td style="color:#d03b3b">↓ -0.1pt</td></tr><tr><td><b>FR</b> フランス</td><td>4.2%</td><td>4.2%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>IT</b> イタリア</td><td>3.3%</td><td>3.3%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>MX</b> メキシコ</td><td>2.9%</td><td>2.9%</td><td style="color:var(--muted)">→ -0.0pt</td></tr><tr><td><b>JP</b> 日本</td><td>2.8%</td><td>2.8%</td><td style="color:var(--muted)">→ +0.0pt</td></tr></table><div class="note">「変化」は最古スナップショットとの構成比の差。US比率が↑ならUS向け施策が効いている。</div></div>
-<div class="card" style="margin-top:14px"><div class="tile"><div class="label">リーチ（視聴者）の国別構成推移（90日ローリング・上位8カ国）</div></div><table class="tabnum"><tr><th>国</th><th>06-29</th><th>07-05</th><th>変化</th></tr><tr><td><b>IN</b> インド</td><td>29.8%</td><td>29.7%</td><td style="color:#d03b3b">↓ -0.1pt</td></tr><tr><td><b>ID</b> インドネシア</td><td>8.7%</td><td>8.7%</td><td style="color:var(--muted)">→ -0.0pt</td></tr><tr><td><b>US</b> アメリカ</td><td>6.9%</td><td>6.9%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>BR</b> ブラジル</td><td>5.3%</td><td>5.3%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>JP</b> 日本</td><td>4.2%</td><td>4.3%</td><td style="color:var(--up);font-weight:700">↑ +0.1pt</td></tr><tr><td><b>FR</b> フランス</td><td>3.0%</td><td>3.0%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>AU</b> 豪</td><td>2.9%</td><td>2.9%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>PH</b> フィリピン</td><td>2.4%</td><td>2.4%</td><td style="color:var(--muted)">→ -0.0pt</td></tr></table><div class="note">reached_audience_demographicsは常に「過去90日」の集計なので、変化はゆっくり反映される。急変時は直近投稿の配信先が大きく動いたサイン。</div></div>
+</table></div></div>
+<div class="card" style="margin-top:14px"><div class="tile"><div class="label">フォロワーの国別構成推移（上位8カ国・構成比%）</div></div><div class="tscroll"><table class="tabnum"><tr><th>国</th><th>06-29</th><th>07-05</th><th>変化</th></tr><tr><td><b>IN</b> インド</td><td>20.1%</td><td>19.9%</td><td style="color:#d03b3b">↓ -0.1pt</td></tr><tr><td><b>US</b> アメリカ</td><td>10.3%</td><td>10.3%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>BR</b> ブラジル</td><td>10.1%</td><td>10.2%</td><td style="color:var(--up);font-weight:700">↑ +0.1pt</td></tr><tr><td><b>ID</b> インドネシア</td><td>8.3%</td><td>8.3%</td><td style="color:#d03b3b">↓ -0.1pt</td></tr><tr><td><b>FR</b> フランス</td><td>4.2%</td><td>4.2%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>IT</b> イタリア</td><td>3.3%</td><td>3.3%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>MX</b> メキシコ</td><td>2.9%</td><td>2.9%</td><td style="color:var(--muted)">→ -0.0pt</td></tr><tr><td><b>JP</b> 日本</td><td>2.8%</td><td>2.8%</td><td style="color:var(--muted)">→ +0.0pt</td></tr></table></div><div class="note">「変化」は最古スナップショットとの構成比の差。US比率が↑ならUS向け施策が効いている。</div></div>
+<div class="card" style="margin-top:14px"><div class="tile"><div class="label">リーチ（視聴者）の国別構成推移（90日ローリング・上位8カ国）</div></div><div class="tscroll"><table class="tabnum"><tr><th>国</th><th>06-29</th><th>07-05</th><th>変化</th></tr><tr><td><b>IN</b> インド</td><td>29.8%</td><td>29.7%</td><td style="color:#d03b3b">↓ -0.1pt</td></tr><tr><td><b>ID</b> インドネシア</td><td>8.7%</td><td>8.7%</td><td style="color:var(--muted)">→ -0.0pt</td></tr><tr><td><b>US</b> アメリカ</td><td>6.9%</td><td>6.9%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>BR</b> ブラジル</td><td>5.3%</td><td>5.3%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>JP</b> 日本</td><td>4.2%</td><td>4.3%</td><td style="color:var(--up);font-weight:700">↑ +0.1pt</td></tr><tr><td><b>FR</b> フランス</td><td>3.0%</td><td>3.0%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>AU</b> 豪</td><td>2.9%</td><td>2.9%</td><td style="color:var(--muted)">→ +0.0pt</td></tr><tr><td><b>PH</b> フィリピン</td><td>2.4%</td><td>2.4%</td><td style="color:var(--muted)">→ -0.0pt</td></tr></table></div><div class="note">reached_audience_demographicsは常に「過去90日」の集計なので、変化はゆっくり反映される。急変時は直近投稿の配信先が大きく動いたサイン。</div></div>
 <div class="card" style="margin-top:14px"><div class="tile"><div class="label">フォロワー実数推移</div></div>
 <table class="tabnum"><tr><th>日付</th><th>フォロワー</th><th>増分</th></tr>
 <tr><td>2026-06-29</td><td>257,938</td><td>—</td></tr>
 <tr><td>2026-07-05</td><td>262,330</td><td><span style="color:var(--up);font-weight:700">+4,392</span></td></tr>
 </table></div>
 <details style="margin-top:14px"><summary>全投稿の明細（5月以降）を開く</summary><div class="card" style="margin-top:8px">
-<table class="tabnum"><tr><th>日付</th><th>時刻</th><th>views</th><th>Δviews</th><th>likes</th><th>ER</th><th>skip</th><th>視聴</th><th style="text-align:left">内容</th></tr>
+<div class="tscroll"><table class="tabnum"><tr><th>日付</th><th>時刻</th><th>views</th><th>Δviews</th><th>likes</th><th>ER</th><th>skip</th><th>視聴</th><th style="text-align:left">内容</th></tr>
 <tr><td><a href="https://www.instagram.com/reel/DaZFEJaT6j_/" target="_blank">07-05</a></td><td>10時</td><td>18K</td><td class="dv2">+18K</td><td>297</td><td>1.7%</td><td>55%</td><td>6.4s</td><td class="cap2">A bug has occurred　#japanese #nowyouknow #yankii #yankiijapa</td></tr>
 <tr><td><a href="https://www.instagram.com/reel/DaXgTAUSUzb/" target="_blank">07-04</a></td><td>20時</td><td>41K</td><td class="dv2">+41K</td><td>2.1K</td><td>5.2%</td><td>52%</td><td>10.8s</td><td class="cap2">How to say”that’s a sore loser talk”in yankee Japanese!? We </td></tr>
 <tr><td><a href="https://www.instagram.com/reel/DaU8htfScu3/" target="_blank">07-03</a></td><td>20時</td><td>360K</td><td class="dv2">+360K</td><td>25K</td><td>7.1%</td><td>26%</td><td>18.1s</td><td class="cap2">How to say”last warning “in yankii Japanese!? We say 最後の警告だ　</td></tr>
@@ -273,7 +292,7 @@ details summary{cursor:pointer;color:var(--ink-2);font-size:13px;padding:6px 0}
 <tr><td><a href="https://www.instagram.com/reel/DX1AnwHyMHe/" target="_blank">05-02</a></td><td>17時</td><td>217K</td><td class="dv2">+217K</td><td>17K</td><td>8.0%</td><td>40%</td><td>15.2s</td><td class="cap2">How to say “Are you ready ” in yankee Japanese !?we say 準備はい</td></tr>
 <tr><td><a href="https://www.instagram.com/reel/DXyPKeTRulU/" target="_blank">05-01</a></td><td>15時</td><td>68K</td><td class="dv2">+68K</td><td>2.5K</td><td>3.8%</td><td>55%</td><td>9.3s</td><td class="cap2">How to say “chop,chop “in yankee Japanese!? We say さっさとやれ　Sa</td></tr>
 <tr><td><a href="https://www.instagram.com/reel/DXyO54DRLel/" target="_blank">05-01</a></td><td>15時</td><td>100K</td><td class="dv2">+100K</td><td>5.5K</td><td>5.5%</td><td>47%</td><td>13.2s</td><td class="cap2">How to say “you’re too slow “in yankee Japanese!? We say のろす</td></tr>
-</table></div></details>
+</table></div></div></details>
 <div class="tooltip" id="tip"><div class="tv"></div><div class="tl"></div></div>
 <script>
 const tip=document.getElementById('tip');
